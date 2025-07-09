@@ -1,0 +1,705 @@
+/* ========================================
+   DASHBOARD PAGE STYLES
+   dashboard.css - Updated for new database structure
+   ======================================== */
+
+/* Color Palette */
+:root {
+    --blush: #E8B7A1;
+    --pinkish: #E49090;
+    --caramel: #B9874F;
+    --black: #000000;
+    --white: #FFFFFF;
+}
+
+/* Navigation Header - COMPLETELY SEPARATE FROM BANNER */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+    position: relative;
+    z-index: 100;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 0; /* No margin below nav */
+}
+
+/* Banner Section with Background - STARTS IMMEDIATELY BELOW NAV */
+.banner-section {
+    background-color: var(--pinkish);
+    min-height: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: var(--black);
+    margin-top: 0; /* No margin above banner */
+}
+
+/* Banner Background Image - COVERS ENTIRE BANNER AREA */
+.banner-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.banner-logo-dashboard {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+}
+
+.logo-title h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: var(--black);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Main Navigation */
+.main-nav {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+}
+
+.nav-menu li a {
+    text-decoration: none;
+    color: var(--black);
+    font-family: 'Sniglet', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+    background-color: rgba(139, 148, 158, 0.2);
+}
+
+/* Logout Button - WITH BLACK TEXT OUTLINE */
+.logout-btn {
+    background-color: var(--blush);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-family: 'Sniglet', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    /* BLACK TEXT OUTLINE */
+    text-shadow: 
+        -1px -1px 0 var(--black),
+        1px -1px 0 var(--black),
+        -1px 1px 0 var(--black),
+        1px 1px 0 var(--black);
+}
+
+.logout-btn:hover {
+    background-color: var(--pinkish);
+}
+
+/* Welcome Content - Centered */
+.welcome-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 10; /* Above banner image but below nav */
+    margin-top: 0; /* Remove any margin that might push content down */
+}
+
+.welcome-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+    text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
+}
+
+.welcome-content p {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: var(--black);
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    line-height: 1.6;
+}
+
+/* FIXED LOGIN CONTAINER POSITIONING */
+.login-container {
+    width: 90%;
+    background-color: #fce6e0;
+    margin: 2rem auto; /* Changed from negative margin */
+    padding: 2rem;
+    border-radius: 1.5rem;
+    max-width: 400px;
+    border: 1px solid var(--black);
+    text-align: center;
+    box-shadow: 4px 4px var(--caramel);
+    position: relative;
+    z-index: 10;
+    min-height: auto; /* Allow natural height */
+}
+
+/* FIXED LOGO WRAPPER */
+.logo-wrapper {
+    margin-top: 0; /* Removed negative margin */
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-img {
+    width: 150px;
+    height: auto;
+    border-radius: 50%;
+    border: 2px solid var(--black);
+    background-color: var(--white);
+    padding: 0.2rem;
+}
+
+/* ENSURE FULL PAGE LAYOUT - NO GAPS */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Sniglet', system-ui, sans-serif;
+    background-color: var(--pinkish);
+    color: var(--black);
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* PAGE WRAPPER FOR PROPER LAYOUT - NO GAPS */
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+/* MAIN CONTENT AREA - NO GAPS */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    min-height: calc(100vh - 200px);
+    margin: 0;
+}
+
+/* Dashboard Container - Equal Heights */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 2rem auto;
+    background-color: var(--white);
+    align-items: stretch;
+    border-radius: 1rem;
+}
+
+/* Individual Boxes - Equal Heights */
+.dashboard-box {
+    border: 2px solid var(--black);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    background-color: var(--white);
+    box-shadow: 4px 4px 0 var(--caramel);
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;
+    height: 600px;
+}
+
+.dashboard-box h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    font-weight: 800;
+    font-family: 'Sniglet', system-ui, sans-serif;
+    color: var(--black);
+    flex-shrink: 0;
+}
+
+/* Book Catalog Section */
+.book-catalog {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-catalog h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.8rem 0;
+    font-family: 'Sniglet', system-ui, sans-serif;
+    color: var(--black);
+}
+
+.book-catalog h4:first-child {
+    margin-top: 0;
+}
+
+.book-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    justify-items: center;
+}
+
+.book-row img {
+    width: 80px;
+    height: 120px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    object-fit: cover;
+    border: 2px solid var(--caramel);
+}
+
+/* More Books Text */
+.book-catalog .more-books-text {
+    text-align: center;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+/* Advanced Search Form */
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    flex: 1;
+}
+
+.form-row {
+    display: flex;
+    width: 100%;
+}
+
+.form-row-split {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.form-row-split input,
+.form-row-split select {
+    flex: 1;
+}
+
+.search-form input,
+.search-form select {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    font-family: 'Sniglet', system-ui, sans-serif;
+    font-size: 0.9rem;
+    background-color: var(--white);
+}
+
+.search-form input:focus,
+.search-form select:focus {
+    outline: none;
+    border-color: var(--caramel);
+    box-shadow: 0 0 0 2px rgba(185, 135, 79, 0.2);
+}
+
+/* Student Profile Section */
+.student-profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+}
+
+.student-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.student-profile p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--black);
+}
+
+/* Second h3 for My Borrowed Books */
+.dashboard-box h3:nth-of-type(2) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    font-family: 'Sniglet', system-ui, sans-serif;
+    color: var(--black);
+    flex-shrink: 0;
+}
+
+/* Borrowed Books Container */
+.borrowed-books-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Borrowed Books Table - Updated for new Copy ID column */
+.borrowed-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    font-size: 0.85rem; /* Slightly smaller to fit new column */
+    flex: 1;
+}
+
+.borrowed-table th,
+.borrowed-table td {
+    padding: 0.6rem 0.4rem; /* Reduced padding for better fit */
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.borrowed-table th {
+    font-weight: 600;
+    background-color: #f8f9fa;
+    font-family: 'Sniglet', system-ui, sans-serif;
+    font-size: 0.8rem;
+}
+
+/* Specific column widths for better layout */
+.borrowed-table th:nth-child(1) { width: 40%; } /* Book Title */
+.borrowed-table th:nth-child(2) { width: 25%; } /* Copy ID */
+.borrowed-table th:nth-child(3) { width: 20%; } /* Due Date */
+.borrowed-table th:nth-child(4) { width: 15%; } /* Status */
+
+.borrowed-table td:nth-child(1) strong {
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.borrowed-table td:nth-child(2) {
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    color: #666;
+    word-break: break-all;
+}
+
+.borrowed-table td:nth-child(3) {
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.borrowed-table .status-green {
+    color: #28a745;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.borrowed-table .status-red {
+    color: #dc3545;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* No Books Message */
+.no-books-message {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.no-books-message p {
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+/* Buttons - WITH BLACK TEXT OUTLINE */
+.dashboard-box .btn {
+    display: block;
+    width: 100%;
+    padding: 0.8rem 1.5rem;
+    margin-top: auto;
+    background-color: var(--blush);
+    border: none;
+    border-radius: 0.5rem;
+    font-family: 'Sniglet', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+    color: var(--white);
+    /* BLACK TEXT OUTLINE */
+    text-shadow: 
+        -1px -1px 0 var(--black),
+        1px -1px 0 var(--black),
+        -1px 1px 0 var(--black),
+        1px 1px 0 var(--black);
+}
+
+.dashboard-box .btn:hover {
+    background-color: var(--pinkish);
+}
+
+/* RESPONSIVE DESIGN - IMPROVED */
+@media (max-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .dashboard-box:last-child {
+        grid-column: 1 / -1;
+    }
+    
+    .main-header {
+        padding: 1rem;
+    }
+    
+    .nav-menu {
+        gap: 1rem;
+    }
+    
+    .logo-title h1 {
+        font-size: 1.5rem;
+    }
+    
+    .login-container {
+        margin: 1rem auto;
+        padding: 1.5rem;
+    }
+    
+    /* Adjust banner image position for smaller screens */
+    .banner-bg {
+        top: 80px;
+        height: calc(100% - 80px);
+    }
+    
+    /* Adjust borrowed books table for medium screens */
+    .borrowed-table {
+        font-size: 0.8rem;
+    }
+    
+    .borrowed-table th:nth-child(2) { width: 30%; } /* More space for Copy ID */
+    .borrowed-table th:nth-child(1) { width: 35%; } /* Less space for title */
+}
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .main-header {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    .main-nav {
+        order: 2;
+    }
+    
+    .logout-btn {
+        order: 3;
+        align-self: flex-end;
+    }
+    
+    .nav-menu {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .welcome-content h2 {
+        font-size: 2rem;
+    }
+    
+    .welcome-content p {
+        font-size: 1rem;
+    }
+    
+    .form-row-split {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .book-row {
+        justify-content: space-between;
+    }
+    
+    .book-row img {
+        width: 50px;
+        height: 75px;
+    }
+    
+    .banner-section {
+        min-height: 300px;
+    }
+    
+    .dashboard-box {
+        min-height: auto;
+        height: auto; /* Allow flexible height on mobile */
+    }
+    
+    .login-container {
+        width: 95%;
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+    
+    .main-content {
+        min-height: calc(100vh - 150px); /* Adjust for mobile */
+        padding: 0.5rem;
+    }
+    
+    /* Adjust banner for mobile navigation */
+    .banner-bg {
+        top: 140px; /* More space for stacked mobile nav */
+        height: calc(100% - 140px);
+    }
+    
+    /* Mobile table adjustments - Stack table content */
+    .borrowed-table {
+        font-size: 0.75rem;
+    }
+    
+    .borrowed-table th:nth-child(1) { width: 30%; } /* Book Title */
+    .borrowed-table th:nth-child(2) { width: 25%; } /* Copy ID */
+    .borrowed-table th:nth-child(3) { width: 25%; } /* Due Date */
+    .borrowed-table th:nth-child(4) { width: 20%; } /* Status */
+    
+    .borrowed-table td:nth-child(2) {
+        font-size: 0.7rem;
+    }
+    
+    .borrowed-table td:nth-child(3) {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        width: 98%;
+        margin: 0.5rem auto;
+        padding: 1rem;
+    }
+    
+    .logo-img {
+        width: 120px;
+    }
+    
+    .banner-section {
+        min-height: 250px;
+    }
+    
+    .welcome-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    /* Further adjust for very small screens */
+    .banner-bg {
+        top: 160px;
+        height: calc(100% - 160px);
+    }
+    
+    /* Very small screen table - Consider card layout */
+    .borrowed-table th,
+    .borrowed-table td {
+        padding: 0.4rem 0.2rem;
+    }
+    
+    .borrowed-table {
+        font-size: 0.7rem;
+    }
+    
+    .borrowed-table th:nth-child(1) { width: 35%; }
+    .borrowed-table th:nth-child(2) { 
+        width: 30%; 
+        word-break: break-all;
+    }
+    .borrowed-table th:nth-child(3) { width: 20%; }
+    .borrowed-table th:nth-child(4) { width: 15%; }
+    
+    .borrowed-table td:nth-child(2) {
+        font-size: 0.65rem;
+    }
+}
+
+/* UTILITY CLASSES FOR BETTER SPACING */
+.mt-auto {
+    margin-top: auto;
+}
+
+.mb-auto {
+    margin-bottom: auto;
+}
+
+.flex-grow {
+    flex-grow: 1;
+}
+
+/* PREVENT CONTENT CUTOFF */
+.safe-area {
+    padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* IMPROVED SCROLL BEHAVIOR */
+html {
+    scroll-behavior: smooth;
+}
+
+/* BETTER FOCUS INDICATORS */
+*:focus {
+    outline: 2px solid var(--caramel);
+    outline-offset: 2px;
+}
